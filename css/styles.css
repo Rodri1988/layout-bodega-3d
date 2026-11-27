@@ -1,0 +1,76 @@
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #0f172a;
+  user-select: none;
+}
+#canvas-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+/* Scrollbar personalizado para paneles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.7);
+}
+.glass-panel {
+  background: rgba(15, 23, 42, 0.84);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- Modo recorrido ---------- */
+.walk-hidden { display: none; }
+#control-sidebar.hidden, #open-sidebar-btn.hidden { display: none; }
+body.walking header, body.walking footer, body.walking #control-sidebar, body.walking #open-sidebar-btn { display: none !important; }
+#canvas-container canvas { touch-action: none; }
+#walk-hud > div { position: fixed; z-index: 30; color: #f1f5f9; }
+#walk-top { top: 12px; left: 12px; border-radius: 14px; padding: 8px 16px; max-width: 46vw; }
+#walk-place { font-size: 16px; font-weight: 700; }
+#walk-sub { font-size: 11px; color: #94a3b8; }
+#walk-bar { top: 12px; right: 12px; border-radius: 14px; padding: 6px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; max-width: 50vw; }
+#walk-bar select, #walk-bar button { background: #1e293b; border: 1px solid #334155; border-radius: 9px; padding: 7px 10px; font-size: 12px; color: #f1f5f9; cursor: pointer; }
+#walk-map-box { right: 12px; bottom: 12px; border-radius: 14px; padding: 6px; }
+#walk-map { display: block; width: 248px; height: 144px; cursor: crosshair; border-radius: 8px; }
+#walk-map-note { font-size: 10px; color: #94a3b8; text-align: center; padding-top: 3px; }
+#walk-cross { left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(15,23,42,.6); pointer-events: none; }
+#walk-aim { left: 50%; top: calc(50% + 18px); transform: translateX(-50%); background: rgba(15,23,42,.88); border-radius: 8px; padding: 4px 10px; font-size: 12px; white-space: nowrap; pointer-events: none; }
+#walk-aim:empty { display: none; }
+#walk-help { left: 12px; bottom: 12px; border-radius: 12px; padding: 8px 12px; font-size: 11px; color: #cbd5e1; max-width: calc(100vw - 310px); pointer-events: none; }
+#walk-joy { left: 24px; bottom: 28px; width: 112px; height: 112px; border-radius: 50%; background: rgba(15,23,42,.55); border: 2px solid rgba(255,255,255,.25); touch-action: none; display: none; }
+#walk-knob { position: absolute; left: 34px; top: 34px; width: 40px; height: 40px; border-radius: 50%; background: #34d399; pointer-events: none; }
+@media (pointer: coarse) { #walk-joy { display: block; } #walk-help { display: none; } }
+@media (max-width: 640px) {
+  #walk-top { max-width: calc(100vw - 24px); }
+  #walk-bar { top: 70px; right: 12px; left: 12px; max-width: none; }
+  #walk-map { width: 172px; height: 100px; }
+  #walk-map-note { display: none; }
+}
+
+/* ---------- Inventario (prueba) ---------- */
+.inv-hidden { display: none !important; }
+#inv-open { position: fixed; top: 128px; left: 16px; z-index: 21; border-radius: 12px; padding: 8px 12px; font-size: 12px; font-weight: 600; }
+#inv-panel { position: fixed; top: 80px; left: 16px; z-index: 22; width: 320px; max-width: calc(100vw - 32px); max-height: calc(100vh - 180px); overflow-y: auto; border-radius: 16px; padding: 12px; font-size: 12px; background: rgba(15,23,42,.96); }
+#inv-panel button, #inv-panel select, #inv-panel input[type=search] { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 6px 9px; color: #f1f5f9; }
+#inv-panel select, #inv-panel input, #inv-unmapped { width: 100%; margin-bottom: 8px; }
+.inv-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.inv-note { color: #94a3b8; font-size: 11px; margin: 7px 0; }
+.inv-level { font-weight: 700; color: #7dd3fc; margin: 8px 0 4px; }
+.inv-item { display: block; width: 100%; text-align: left; white-space: pre-line; background: #1e293b; border-radius: 8px; padding: 6px 8px; margin-bottom: 4px; font-size: 11px; }
+#insp-products { max-height: 38vh; overflow-y: auto; user-select: text; }
+body.walking #inv-open, body.walking #inv-panel { display: none !important; }
+body.walking #inspector-card { bottom: auto; top: 128px; max-height: calc(100vh - 300px); overflow-y: auto; z-index: 40; }
+@media (max-width: 640px) { #inspector-card { right: 12px; left: 12px; width: auto; max-height: 55vh; overflow-y: auto; } }
