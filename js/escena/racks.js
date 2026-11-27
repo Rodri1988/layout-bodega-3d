@@ -138,7 +138,8 @@ function buildAllRacks() {
   });
 
   // Helper para las 3 grandes columnas centrales (Columnas 5, 6 y 7)
-  const buildCentralDoubleColumn = (xLeft, xRight, aisleLeft, aisleRight, blockLabel) => {
+  // rightIsP28: la cara este es el Pasillo 28 (hileras 2 a 18, sin sección del frente por el baño)
+  const buildCentralDoubleColumn = (xLeft, xRight, aisleLeft, aisleRight, blockLabel, rightIsP28 = false) => {
     // Sección superior: 7-8 hasta 23-24 (9 niveles, idx 0 a 8)
     [7, 9, 11, 13, 15, 17, 19, 21, 23].forEach((num, idx) => {
       const zPos = getUpperZ(idx);
@@ -152,7 +153,7 @@ function buildAllRacks() {
         columnDesc: `${blockLabel} Superior · Cara Oeste`
       });
       createRackModule({
-        num: num + 1,
+        num: rightIsP28 ? num - 5 : num + 1,
         x: xRight,
         z: zPos,
         width: modWidth,
@@ -174,6 +175,7 @@ function buildAllRacks() {
         aisleName: aisleLeft,
         columnDesc: `${blockLabel} Inferior · Cara Oeste`
       });
+      if (rightIsP28) return; // ahí está el baño
       createRackModule({
         num: num + 1,
         x: xRight,
@@ -193,11 +195,11 @@ function buildAllRacks() {
   buildCentralDoubleColumn(1.2, 3.9, 'Pasillo 26', 'Pasillo 27', 'Bloque Central 2');
 
   // 9. SÉPTIMA COLUMNA DE RACKS (Entre Pasillo 27 y Pasillo 28)
-  buildCentralDoubleColumn(10.9, 13.6, 'Pasillo 27', 'Pasillo 28', 'Bloque Central 3');
+  buildCentralDoubleColumn(10.9, 13.6, 'Pasillo 27', 'Pasillo 28', 'Bloque Central 3', true);
 
   // 10. OCTAVA COLUMNA DE RACKS (A la derecha de Pasillo 28, pegada a BEEXX)
-  // Columna simple con módulos impares 7, 9, 11, 13, 15, 17, 19, 21, 23
-  [7, 9, 11, 13, 15, 17, 19, 21, 23].forEach((num, idx) => {
+  // Columna simple con las hileras impares 1 a 17 del Pasillo 28
+  [1, 3, 5, 7, 9, 11, 13, 15, 17].forEach((num, idx) => {
     createRackModule({
       num,
       x: 19.8,

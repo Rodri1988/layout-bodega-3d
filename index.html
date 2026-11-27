@@ -178,7 +178,7 @@
       </button>
     </div>
     <p id="insp-desc" class="text-xs text-slate-300 mt-2 leading-relaxed">
-      Estantería selectiva pesada con 3 niveles de carga paletizada, vigas naranjas de alta resistencia y pilares estructurales azules.
+      Estantería selectiva pesada con 4 niveles de carga paletizada, vigas naranjas y pilares estructurales grises.
     </p>
     <div id="insp-meta" class="mt-3 pt-2.5 border-t border-slate-700/70 grid grid-cols-2 gap-2 text-[11px]">
       <!-- Metadatos dinámicos -->
@@ -228,6 +228,11 @@
         <option value="none">Sin color</option>
       </select>
       <p id="inv-legend" class="inv-note">⬜ Gris: pendiente · 🟨 En proceso · 🟩 Cuadrado · 🟥 Con diferencia</p>
+      <label class="inv-check"><input id="inv-empty" type="checkbox" checked> Flechas en hileras sin productos</label>
+      <details>
+        <summary id="inv-empty-title">Hileras sin productos</summary>
+        <div id="inv-empty-list"></div>
+      </details>
       <input id="inv-search" type="search" placeholder="Buscar SKU, producto o ubicación">
       <button id="inv-unmapped">Ver líneas sin lugar en el 3D</button>
       <div id="inv-results"></div>
@@ -273,6 +278,7 @@
   <script src="js/escena/segundo-piso.js"></script>
   <script src="js/escena/pasillos-extintores.js"></script>
   <script src="js/escena/detalle-fotos.js"></script>
+  <script src="js/escena/sector-bano.js"></script>
   <script src="js/ui/interfaz.js"></script>
   <script src="js/recorrido/movimiento.js"></script>
   <script src="js/recorrido/senaletica.js"></script>
@@ -282,6 +288,7 @@
   <script src="js/recorrido/controles.js"></script>
   <script src="js/inventario/lector-excel.js"></script>
   <script src="js/inventario/panel-inventario.js"></script>
+  <script src="js/inventario/hileras-vacias.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

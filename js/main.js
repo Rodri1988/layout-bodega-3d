@@ -63,6 +63,7 @@ function init() {
   buildSpecialZones();
   buildSecondFloorMezzanine();
   buildPhotoDetails();
+  buildSectorBano();
   buildAislesAndMeasurements();
   buildFireExtinguishers();
 
@@ -97,6 +98,7 @@ function animate() {
   const dt = Math.min(walkClock.getDelta(), 0.05);
   if (walk.active) updateWalk(dt);
   else controls.update();
+  animateEmptyRows();
   renderer.render(scene, camera);
 }
 

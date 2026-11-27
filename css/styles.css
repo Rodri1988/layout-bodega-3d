@@ -63,9 +63,14 @@ body.walking header, body.walking footer, body.walking #control-sidebar, body.wa
 /* ---------- Inventario (prueba) ---------- */
 .inv-hidden { display: none !important; }
 #inv-open { position: fixed; top: 128px; left: 16px; z-index: 21; border-radius: 12px; padding: 8px 12px; font-size: 12px; font-weight: 600; }
-#inv-panel { position: fixed; top: 80px; left: 16px; z-index: 22; width: 320px; max-width: calc(100vw - 32px); max-height: calc(100vh - 180px); overflow-y: auto; border-radius: 16px; padding: 12px; font-size: 12px; background: rgba(15,23,42,.96); }
+#inv-panel { position: fixed; top: 80px; left: 16px; z-index: 22; width: 320px; max-width: calc(100vw - 32px); max-height: calc(100vh - 180px); overflow-y: auto; border-radius: 16px; padding: 12px; font-size: 12px; color: #f1f5f9; background: rgba(15,23,42,.96); }
 #inv-panel button, #inv-panel select, #inv-panel input[type=search] { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 6px 9px; color: #f1f5f9; }
 #inv-panel select, #inv-panel input, #inv-unmapped { width: 100%; margin-bottom: 8px; }
+#inv-panel .inv-check { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+#inv-panel .inv-check input { width: auto; margin: 0; }
+#inv-panel summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
+#inv-empty-list { max-height: 170px; overflow-y: auto; }
+.inv-none { color: #fca5a5; border: 1px dashed #dc2626; }
 .inv-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .inv-note { color: #94a3b8; font-size: 11px; margin: 7px 0; }
 .inv-level { font-weight: 700; color: #7dd3fc; margin: 8px 0 4px; }

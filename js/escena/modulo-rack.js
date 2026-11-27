@@ -11,8 +11,8 @@ function createRackModule(config) {
     z,
     width = 2.8,
     depth = 4.2,
-    height = 6.2,
-    levels = 3,
+    height = 7.0,
+    levels = 4,   // piso + 3 niveles sobre vigas
     aisleName = '',
     columnDesc = ''
   } = config;
@@ -20,7 +20,7 @@ function createRackModule(config) {
   const rackGroup = new THREE.Group();
   rackGroup.position.set(x, 0, z);
 
-  // 4 Pilares Azules
+  // 4 Pilares
   const postGeo = new THREE.BoxGeometry(0.16, height, 0.16);
   const offsets = [
     [-width / 2 + 0.08, -depth / 2 + 0.08],
@@ -37,7 +37,7 @@ function createRackModule(config) {
   });
 
   // Vigas Naranjas y Niveles de Carga
-  const levelStep = (height - 0.8) / levels;
+  const levelStep = height / levels;
   const beamLongGeo = new THREE.BoxGeometry(0.1, 0.16, depth);
   const beamShortGeo = new THREE.BoxGeometry(width, 0.14, 0.1);
 
@@ -67,7 +67,8 @@ function createRackModule(config) {
   interactiveObjects.push(hitMesh);
 
   for (let lvl = 0; lvl < levels; lvl++) {
-    const yBeam = 0.4 + lvl * levelStep;
+    const yBeam = lvl * levelStep;   // el nivel 1 va en el piso, sin vigas
+    if (lvl > 0) {
 
     // Vigas laterales (a lo largo de Z)
     const bLeft = new THREE.Mesh(beamLongGeo, materials.beamOrange);
@@ -86,6 +87,8 @@ function createRackModule(config) {
     const bBack = new THREE.Mesh(beamShortGeo, materials.beamOrange);
     bBack.position.set(0, yBeam, -depth / 2 + 0.08);
     rackGroup.add(bBack);
+
+    }
 
     // Pallets y cajas (2 pallets por nivel a lo largo de Z)
     for (let p = 0; p < 2; p++) {

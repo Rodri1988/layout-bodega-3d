@@ -526,8 +526,6 @@ function buildSpecialZones() {
     z: 33.0,
     width: 8.6,
     depth: 4.5,
-    height: 4.5,
-    levels: 2,
     aisleName: 'Pasillo 31',
     columnDesc: 'Módulo Sur BEEXX / Patio'
   });

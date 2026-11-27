@@ -53,7 +53,7 @@ const cameraPresets = {
 
 // Materiales compartidos para óptimo rendimiento
 const materials = {
-  postBlue: new THREE.MeshStandardMaterial({ color: 0x1d4ed8, roughness: 0.45, metalness: 0.6 }),
+  postBlue: new THREE.MeshStandardMaterial({ color: 0x8d949c, roughness: 0.45, metalness: 0.6 }),
   beamOrange: new THREE.MeshStandardMaterial({ color: 0xf97316, roughness: 0.4, metalness: 0.35 }),
   palletWood: new THREE.MeshStandardMaterial({ color: 0xb4834b, roughness: 0.85 }),
   boxColors: [

@@ -11,6 +11,7 @@ const walkSpots = [
   ['Pasillo 26', -2.3, 0, 14, 0],
   ['Pasillo 27', 7.4, 0, 14, 0],
   ['Pasillo 28', 16.8, 0, 14, 0],
+  ['Baño', 15.8, 0, 17.0, Math.PI],
   ['Bodega 70 · Acceso', -24.4, 0, -8, 0],
   ['Escalera al 2° Piso', -26.3, 0, -10.35, Math.PI / 2],
   ['Zona de trabajo', -29.5, 0, -4.6, Math.PI / 2 - 0.35],

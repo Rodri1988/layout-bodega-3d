@@ -50,6 +50,7 @@ function loadInventory(rows, hasStatus, fileName) {
   $('inv-search').value = ''; $('inv-results').textContent = '';
   document.getElementById('inspector-card').classList.add('hidden');
   paintOverlay();
+  updateEmptyRows();
 }
 
 function addLine(parent, text, cls, onClick) {
@@ -70,13 +71,19 @@ function renderProducts(obj) {
   $('insp-meta').textContent = '';
   const list = (inv.byKey.get(obj.userData.invKey) || []).slice().sort((a, b) =>
     (b.code.split('-')[3] - a.code.split('-')[3]) || a.code.localeCompare(b.code, 'es', { numeric: true }));
-  if (!list.length) { addLine(box, 'El archivo no registra productos aquí.', 'inv-item'); return; }
-  let level = null;
-  list.forEach(r => {
-    const nv = r.code.split('-')[3];
-    if (nv !== level) { level = nv; addLine(box, `Nivel ${nv}`, 'inv-level'); }
-    const extra = (r.zero ? ' · en cero en sistema' : '') + (inv.hasStatus ? ` · ${r.status}` : '');
-    addLine(box, `${r.code}  ·  ${r.sku}\n${r.name}${extra}`, 'inv-item');
+  const isRack = obj.userData.type === 'Módulo de Rack';
+  if (!list.length && !isRack) { addLine(box, 'El archivo no registra productos aquí.', 'inv-item'); return; }
+  const levelOf = r => r.code.split('-')[3];
+  const levels = [...new Set([...(isRack ? ['4', '3', '2', '1'] : []), ...list.map(levelOf)])]
+    .sort((a, b) => Number(b) - Number(a));
+  levels.forEach(nv => {
+    addLine(box, `Nivel ${nv}`, 'inv-level');
+    const here = list.filter(r => levelOf(r) === nv);
+    if (!here.length) addLine(box, '⬇ Sin productos en el archivo', 'inv-item inv-none');
+    here.forEach(r => {
+      const extra = (r.zero ? ' · en cero en sistema' : '') + (inv.hasStatus ? ` · ${r.status}` : '');
+      addLine(box, `${r.code}  ·  ${r.sku}\n${r.name}${extra}`, 'inv-item');
+    });
   });
 }
 
@@ -118,6 +125,7 @@ function setupInventory() {
   $('inv-min').addEventListener('click', toggle);
   $('inv-mode').addEventListener('change', paintOverlay);
   $('inv-search').addEventListener('input', runSearch);
+  $('inv-empty').addEventListener('change', e => { if (emptyRows.group) emptyRows.group.visible = e.target.checked; });
   $('inv-unmapped').addEventListener('click', () => {
     const box = $('inv-results'); box.textContent = '';
     addLine(box, `${inv.unmapped.length} línea(s) sin lugar en el 3D`, 'inv-level');

@@ -22,6 +22,7 @@ Se necesita internet, porque Three.js, Tailwind, el lector de Excel y la fuente 
 | `js/escena/segundo-piso.js` | Segundo piso (Bodega 29 y oficina) |
 | `js/escena/pasillos-extintores.js` | Rótulos de pasillos, medidas y extintores |
 | `js/escena/detalle-fotos.js` | Portón de entrada, escalera, fachada y zona de trabajo |
+| `js/escena/sector-bano.js` | Baño, losa superior, pilares y pared del fondo |
 | `js/ui/interfaz.js` | Botones, vistas, selección y ficha del elemento |
 | `js/recorrido/movimiento.js` | Colisiones y alturas al caminar |
 | `js/recorrido/senaletica.js` | Placas visibles al caminar |
@@ -31,6 +32,7 @@ Se necesita internet, porque Three.js, Tailwind, el lector de Excel y la fuente 
 | `js/recorrido/controles.js` | Teclado, joystick y actualización por cuadro |
 | `js/inventario/lector-excel.js` | Lee el Excel y relaciona códigos con el 3D (modo prueba) |
 | `js/inventario/panel-inventario.js` | Panel de inventario, colores y búsqueda (modo prueba) |
+| `js/inventario/hileras-vacias.js` | Flechas en las hileras sin productos |
 | `js/main.js` | Arranque: crea la escena e inicia la animación. Se carga al final |
 
 ## Reglas para editar
