@@ -33,6 +33,7 @@ Se necesita internet, porque Three.js, Tailwind, el lector de Excel y la fuente 
 | `js/inventario/lector-excel.js` | Lee el Excel y relaciona códigos con el 3D (modo prueba) |
 | `js/inventario/panel-inventario.js` | Panel de inventario, colores y búsqueda (modo prueba) |
 | `js/inventario/hileras-vacias.js` | Flechas en las hileras sin productos |
+| `js/inventario/posiciones-libres.js` | Espacios libres por nivel para ubicar pallets nuevos |
 | `js/main.js` | Arranque: crea la escena e inicia la animación. Se carga al final |
 
 ## Reglas para editar

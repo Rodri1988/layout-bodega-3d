@@ -70,6 +70,8 @@ body.walking header, body.walking footer, body.walking #control-sidebar, body.wa
 #inv-panel .inv-check input { width: auto; margin: 0; }
 #inv-panel summary { cursor: pointer; font-weight: 600; margin-bottom: 8px; }
 #inv-empty-list { max-height: 170px; overflow-y: auto; }
+#inv-free-list { max-height: 230px; overflow-y: auto; margin-bottom: 8px; }
+#inv-panel .inv-main { font-weight: 700; font-size: 13px; }
 .inv-none { color: #fca5a5; border: 1px dashed #dc2626; }
 .inv-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .inv-note { color: #94a3b8; font-size: 11px; margin: 7px 0; }

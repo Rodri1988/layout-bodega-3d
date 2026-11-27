@@ -51,6 +51,9 @@ function loadInventory(rows, hasStatus, fileName) {
   document.getElementById('inspector-card').classList.add('hidden');
   paintOverlay();
   updateEmptyRows();
+  if ($('inv-free').checked) $('inv-mode').value = 'none';
+  paintOverlay();
+  updateFreeView();
 }
 
 function addLine(parent, text, cls, onClick) {
@@ -80,6 +83,11 @@ function renderProducts(obj) {
     addLine(box, `Nivel ${nv}`, 'inv-level');
     const here = list.filter(r => levelOf(r) === nv);
     if (!here.length) addLine(box, '⬇ Sin productos en el archivo', 'inv-item inv-none');
+    if (isRack && Number(nv) <= obj.userData.rack.levels) SLOT_BASE.forEach(slot => {
+      const state = slotState(list, nv, slot);
+      if (state === 'libre' || state === 'revisar')
+        addLine(box, `${state === 'libre' ? '🟩' : '🟪'} ${slot}: ${SLOT_STYLE[state].text}`, 'inv-item');
+    });
     here.forEach(r => {
       const extra = (r.zero ? ' · en cero en sistema' : '') + (inv.hasStatus ? ` · ${r.status}` : '');
       addLine(box, `${r.code}  ·  ${r.sku}\n${r.name}${extra}`, 'inv-item');
@@ -119,6 +127,7 @@ function runSearch() {
 
 function setupInventory() {
   indexLayoutObjects();
+  setupFreeView();
   const panel = $('inv-panel'), open = $('inv-open');
   const toggle = () => { panel.classList.toggle('inv-hidden'); open.classList.toggle('inv-hidden'); };
   open.addEventListener('click', () => { document.getElementById('control-sidebar').classList.add('hidden'); document.getElementById('open-sidebar-btn').classList.remove('hidden'); toggle(); });

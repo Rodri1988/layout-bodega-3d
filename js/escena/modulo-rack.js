@@ -64,6 +64,9 @@ function createRackModule(config) {
     ]
   };
   rackGroup.add(hitMesh);
+  // Datos para dibujar la ocupación real (ver js/inventario/posiciones-libres.js)
+  const cargo = [];
+  hitMesh.userData.rack = { width, depth, levels, levelStep, cargo };
   interactiveObjects.push(hitMesh);
 
   for (let lvl = 0; lvl < levels; lvl++) {
@@ -112,6 +115,7 @@ function createRackModule(config) {
       box.castShadow = true;
       box.receiveShadow = true;
       rackGroup.add(box);
+      cargo.push(pallet, box);
     }
   }
 

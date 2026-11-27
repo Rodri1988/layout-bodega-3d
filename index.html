@@ -218,7 +218,7 @@
   <button id="inv-open" class="glass-panel">🧪 Inventario (prueba)</button>
   <div id="inv-panel" class="glass-panel inv-hidden">
     <div class="inv-head"><b>🧪 Inventario · MODO PRUEBA</b><button id="inv-min">— Minimizar</button></div>
-    <p class="inv-note">Carga la descarga del sistema o la plantilla. El archivo se lee en tu equipo. Las cajas dibujadas en los racks son decorativas.</p>
+    <p class="inv-note">Carga la descarga del sistema o la plantilla. El archivo se lee en tu equipo. Las cajas de los racks son decorativas, salvo en la vista de espacios libres.</p>
     <input id="inv-file" type="file" accept=".xlsx">
     <p id="inv-info" class="inv-note"></p>
     <div id="inv-tools" class="inv-hidden">
@@ -228,6 +228,20 @@
         <option value="none">Sin color</option>
       </select>
       <p id="inv-legend" class="inv-note">⬜ Gris: pendiente · 🟨 En proceso · 🟩 Cuadrado · 🟥 Con diferencia</p>
+      <label class="inv-check inv-main"><input id="inv-free" type="checkbox"> 📦 Ver espacios libres para pallets</label>
+      <div id="inv-free-tools" class="inv-hidden">
+        <select id="inv-free-level" aria-label="Nivel">
+          <option value="4">Nivel 4</option>
+          <option value="3">Nivel 3</option>
+          <option value="2">Nivel 2</option>
+          <option value="1">Nivel 1</option>
+          <option value="all">Todos los niveles</option>
+        </select>
+        <select id="inv-free-aisle" aria-label="Pasillo"></select>
+        <p class="inv-note">🟩 Libre · 🟨 En cero · 🟪 Por revisar · ⬛ Ocupada. Es según el archivo: confirma en terreno antes de ubicar un pallet.</p>
+        <p id="inv-free-title" class="inv-level"></p>
+        <div id="inv-free-list"></div>
+      </div>
       <label class="inv-check"><input id="inv-empty" type="checkbox" checked> Flechas en hileras sin productos</label>
       <details>
         <summary id="inv-empty-title">Hileras sin productos</summary>
@@ -289,6 +303,7 @@
   <script src="js/inventario/lector-excel.js"></script>
   <script src="js/inventario/panel-inventario.js"></script>
   <script src="js/inventario/hileras-vacias.js"></script>
+  <script src="js/inventario/posiciones-libres.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
